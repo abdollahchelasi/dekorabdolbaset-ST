@@ -159,7 +159,7 @@ if selected == "خانه":
         
         with st.expander("دکوراسیون عبدالباسط", expanded=True):
 
-            st.image("logo.png")
+            # st.image("logo.png")
 
             st.write("""
 خدمات  :blue[نصب پی وی سی] و :red[نصب کناف] و :green[نصب قرنیز] و :red[نصب ماربل شیت] درسر تا سر جزیره قشم انجام میشود.
