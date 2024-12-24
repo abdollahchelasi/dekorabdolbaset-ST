@@ -201,44 +201,44 @@ if selected == "خانه":
 
     with tab2:
 
-        c1,c2,c3 = st.columns(3)
+        st.text("نمونه کار")
 
-        with c1:
-            st.image('d1.jpg',width=250)
+    #     c1,c2,c3 = st.columns(3)
 
-        with c2:
-            st.image('d2.jpg',width=250)
+    #     with c1:
+    #         st.image('d1.jpg',width=250)
 
-        with c3:
-            st.image('d3.jpg',width=250)
+    #     with c2:
+    #         st.image('d2.jpg',width=250)
 
-        with c1:
-            st.image('d4.jpg',width=250)
+    #     with c3:
+    #         st.image('d3.jpg',width=250)
 
-        with c2:
-            st.image('d5.jpg',width=250)
+    #     with c1:
+    #         st.image('d4.jpg',width=250)
 
-        with c3:
-            st.image('d6.jpg',width=250)
+    #     with c2:
+    #         st.image('d5.jpg',width=250)
+
+    #     with c3:
+    #         st.image('d6.jpg',width=250)
 
 
-        with c3:
-            st.image('d7.jpg',width=250)
+    #     with c3:
+    #         st.image('d7.jpg',width=250)
 
-        with c1:
-            st.image('d8.jpg',width=250)
+    #     with c1:
+    #         st.image('d8.jpg',width=250)
 
-        with c2:
-            st.image('d9.jpg',width=250)
+    #     with c2:
+    #         st.image('d9.jpg',width=250)
 
-        with c3:
-            st.image('d10.jpg',width=250)
+    #     with c3:
+    #         st.image('d10.jpg',width=250)
 
 
 
     with tab3:
-
-    
           
         st.divider()
     
