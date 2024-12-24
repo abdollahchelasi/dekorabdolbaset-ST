@@ -1,0 +1,4 @@
+st_annotated_text==4.0.0
+streamlit==1.25.0
+streamlit-option-menu
+bs4

@@ -1,0 +1,114 @@
+@import url('https://fonts.googleapis.com/css2?family=Lalezar&display=swap');
+
+
+
+*{
+    direction: rtl;
+    color: #59ee34;
+    font-family: 'Lalezar', cursive;
+}
+
+.stImage.st-emotion-cache-1kyxreq.e115fcil2{
+text-align: center;
+align-items: center;
+}
+img{
+    border-radius: 11px;
+    /* box-shadow: #fffb01 1px 1px 8px; */
+    text-align: center;
+}
+p{
+    text-align: center;
+}
+a{
+    background-color: #3a4636;
+    text-decoration: none;
+    border-radius: 11px;
+    text-align: center;
+    padding: 9px;
+
+}
+h3{
+    font-family: 'Lalezar', cursive;
+    color: #fff;
+
+}
+svg{
+    background: linear-gradient(to right,#0e5268,#197b99);
+    border-style: groove;
+    border-color: #fff;
+    border-radius: 3px;
+}
+.appview-container.st-emotion-cache-1yiq2ps.ea3mdgi9{
+     background: linear-gradient(to left,#587cc4,#162742);
+     
+}
+
+.st-emotion-cache-h4xjwg.ezrtsby2{
+    background: linear-gradient(to left,#587cc4,#162742);
+     
+}
+.stSidebar{
+    background-color: #072129;
+}
+
+a:hover{
+    text-decoration: none;
+    color: aliceblue;
+    box-shadow: white 2px 2px 8px;
+}
+.navbar-collapse{
+    direction: rtl;
+    
+}
+
+@keyframes t {
+
+    10%{text-shadow: #7cdb64 1px 1px 8px;}
+    20%{text-shadow: #6ce49e 1px 1px 14px;}
+    30%{text-shadow: #eed919 1px 1px 18px;}
+    40%{text-shadow: #9855f0 1px 1px 8px;}
+    
+}
+.css-10trblm.e16nr0p30{
+    animation-name: t;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+    text-shadow: #59ee34 1px 1px 8px;
+    /* text-align: center; */
+    
+    font-size: 25px;
+}
+
+.css-1v0mbdj.etr89bj1 img{
+    border-radius: 11px;
+    width: 1000px;
+    text-align: center;
+    height: 250px;
+}
+
+.css-1wncz92.e16nr0p34 p{
+    background-color: #3a4636;
+    text-align: center;
+    border-radius: 11px;
+    border-style: groove;
+    padding: 11px;
+}
+@keyframes h33 {
+    10%{color: #232508}
+    20%{color: #199e0b}
+    30%{color: #dfe76c}
+    
+}
+h3{
+    background: linear-gradient(to left,#0e5268,#072129);
+    text-align: center;
+    animation-name: h33;
+    animation-duration: 1.5s;
+    animation-iteration-count: infinite;
+    padding: 4px;
+    border-radius: 11px;
+    font-size: 15px;
+    color: #d6c317;
+    box-shadow: rgb(117, 216, 117) 1px 1px 4px 4px;
+}
