@@ -1,75 +1,80 @@
-import pathlib
-from bs4 import BeautifulSoup
 import streamlit as st
+from bs4 import BeautifulSoup
+import pathlib
 
-def add_meta_tags():
-    # مسیر فایل index.html در محیط ابر (Hugging Face) و همچنین بررسی در Liara
-    try:
-        # در Hugging Face
-        index_path = pathlib.Path(st.__file__).parent / "static" / "index.html"
-        index_path = index_path.resolve()  # تبدیل به مسیر مطلق
-        # اگر فایل وجود ندارد، آن را ایجاد کنید
-        if not index_path.exists():
-            html_content = "<html><head></head><body><h1>خوش آمدید!</h1></body></html>"
-            index_path.write_text(html_content, encoding='utf-8')
+# تنظیمات سئو و متا تگ‌های شبکه اجتماعی
+seo_tags = {
+    'title': 'World Marathons Planner',
+    'meta_description': 'Best Marathon Planner! Browse through the event selection and discover your next Marathon challenge.',
+    'meta_keywords': 'marathon, running, event, training',
+    'og_title': 'World Marathons Planner',
+    'og_description': 'Join us to find the best marathons and personalized training plans.',
+    'og_image': 'https://example.com/image.jpg',
+    'og_url': 'https://example.com'
+}
 
-    except Exception as e:
-        # در صورت بروز خطا، ممکن است در Liara یا تغییر مسیر در Hugging Face باشد
-        index_path = pathlib.Path("index.html")  # مسیر پیش‌فرض برای Liara
-        if not index_path.exists():
-            html_content = "<html><head></head><body><h1>خوش آمدید!</h1></body></html>"
-            index_path.write_text(html_content, encoding='utf-8')
+def load_index_file():
+    index_path = pathlib.Path(st.__file__).parent / "static" / "index.html"
+    with open(index_path, 'r', encoding='utf-8') as file:
+        return file.read()
 
-    # خواندن محتوای HTML
-    soup = BeautifulSoup(index_path.read_text(encoding='utf-8'), features="html.parser")
+def save_index_file(content):
+    index_path = pathlib.Path(st.__file__).parent / "static" / "index.html"
+    with open(index_path, 'w', encoding='utf-8') as file:
+        file.write(content)
 
-    # تغییر عنوان
-    if soup.find('title'):
-        soup.title.string = 'دکوراسیون عبدالباسط - بهترین خدمات دکوراسیون در قشم'
+def inject_seo_tags(html_content):
+    soup = BeautifulSoup(html_content, features="html.parser")
+    
+    # تگ عنوان
+    title_tag = soup.find('title')
+    if title_tag:
+        title_tag.string = seo_tags['title']
     else:
-        title_tag = soup.new_tag('title')
-        title_tag.string = 'دکوراسیون عبدالباسط - بهترین خدمات دکوراسیون در قشم'
-        soup.head.append(title_tag)
-    
-    # افزودن متا تگ‌های Open Graph
+        new_title_tag = soup.new_tag('title')
+        new_title_tag.string = seo_tags['title']
+        if soup.head:
+            soup.head.append(new_title_tag)
+
+    # تگ متا برای توضیحات
+    meta_description = soup.new_tag('meta')
+    meta_description.attrs['name'] = 'description'
+    meta_description.attrs['content'] = seo_tags['meta_description']
+    soup.head.append(meta_description)
+
+    # تگ متا برای کلمات کلیدی
+    meta_keywords = soup.new_tag('meta')
+    meta_keywords.attrs['name'] = 'keywords'
+    meta_keywords.attrs['content'] = seo_tags['meta_keywords']
+    soup.head.append(meta_keywords)
+
+    # تگ‌های اوپن گراف
     og_tags = [
-        ('og:title', 'دکوراسیون عبدالباسط - بهترین خدمات دکوراسیون در قشم'),
-        ('og:description', 'دکوراسیون عبدالباسط با نصب PVC، کناف و قرنیز در جزیره قشم.'),
-        ('og:image', 'https://abdollah-dekor.hf.space/media/05d5f29d85b54442b746b17d95730097fd403c7b864b458922ef34ca.png'),
-        ('og:url', 'https://abdollah-dekor.hf.space'),
-        ('og:type', 'website')
+        ('og:title', seo_tags['og_title']),
+        ('og:description', seo_tags['og_description']),
+        ('og:image', seo_tags['og_image']),
+        ('og:url', seo_tags['og_url']),
     ]
-
-    for name, content in og_tags:
-        meta_tag = soup.new_tag('meta')
-        meta_tag.attrs['property'] = name
-        meta_tag.attrs['content'] = content
-        soup.head.append(meta_tag)
-
-    # افزودن متا تگ‌های سئو
-    seo_tags = [
-        ('description', 'دکوراسیون عبدالباسط با نصب PVC، کناف و قرنیز در جزیره قشم.'),
-        ('keywords', 'دکوراسیون, عبدالباسط, قشم, PVC, کناف, قرنیز'),
-        ('author', 'عبدالله چلاسی')
-    ]
-
-    for name, content in seo_tags:
-        meta_tag = soup.new_tag('meta')
-        meta_tag.attrs['name'] = name
-        meta_tag.attrs['content'] = content
-        soup.head.append(meta_tag)
-
-    # اضافه کردن favicon
-    favicon_tag = soup.new_tag('link')
-    favicon_tag.attrs['rel'] = 'icon'
-    favicon_tag.attrs['href'] = 'https://abdollah-dekor.hf.space/media/05d5f29d85b54442b746b17d95730097fd403c7b864b458922ef34ca.png'
-    favicon_tag.attrs['type'] = 'image/png'
-    soup.head.append(favicon_tag)
-
-    # ذخیره تغییرات در فایل
-    index_path.write_text(str(soup), encoding='utf-8')
     
-# فراخوانی تابع
-add_meta_tags()
+    for property_name, content in og_tags:
+        og_meta = soup.new_tag('meta')
+        og_meta.attrs['property'] = property_name
+        og_meta.attrs['content'] = content
+        soup.head.append(og_meta)
 
-st.text("hi")
+    return str(soup)
+
+def modify_seo_tags():
+    html_content = load_index_file()
+    updated_content = inject_seo_tags(html_content)
+    save_index_file(updated_content)
+    st.success("SEO tags updated successfully.")
+
+# اپلیکیشن Streamlit
+st.title("SEO Tag Modifier")
+
+if st.button("Update SEO Tags"):
+    modify_seo_tags()
+
+st.write("Current SEO tags will be added to the index.html file.")
+    
